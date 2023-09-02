@@ -12,6 +12,12 @@ class BoardImplementation implements IBoardRepository {
     constructor() {
         this.ormRepository = databaseConnection.getRepository(Board);
     }
+
+    public async list(): Promise<IBoardResponseDTO[]> {
+        const boards = await this.ormRepository.find();
+    
+        return boards;
+    }
     
     public async findById(id: number): Promise<IBoardResponseDTO | null> {
         const board = await this.ormRepository.findOneBy({ id });

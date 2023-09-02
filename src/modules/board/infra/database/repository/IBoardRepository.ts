@@ -10,6 +10,8 @@ export interface IBoardRepository {
     
     findById(id: number): Promise<IBoardResponseDTO | null>;
 
+    list(): Promise<IBoardResponseDTO[]>
+
     delete(id: number): Promise<boolean>;
 
 }
