@@ -6,7 +6,7 @@ export interface IBoardRepository {
 
     create(boardDTO: IBoardDTO): Promise<IBoardResponseDTO>;
     
-    update(boardDTO: IBoardUpdateDTO): Promise<IBoardResponseDTO>;
+    update(boardDTO: IBoardUpdateDTO): Promise<IBoardResponseDTO | undefined>;
     
     delete(id: number): Promise<boolean>;
 

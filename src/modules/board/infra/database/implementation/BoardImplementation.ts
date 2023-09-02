@@ -20,7 +20,16 @@ class BoardImplementation implements IBoardRepository {
         return results;
     }
     
-    public async update(boardDTO: IBoardUpdateDTO): Promise<IBoardResponseDTO> {
+    public async update(boardDTO: IBoardUpdateDTO): Promise<IBoardResponseDTO | undefined> {
+        const board = await this.ormRepository.findOneBy({ id: boardDTO.id });
+
+        if (board) {
+
+            this.ormRepository.merge(board, boardDTO);
+            const results = await this.ormRepository.save(board);
+            
+            return results;
+        }
     }
 
     public async delete(id: number): Promise<boolean> {
