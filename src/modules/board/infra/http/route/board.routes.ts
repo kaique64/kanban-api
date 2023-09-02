@@ -38,4 +38,6 @@ boardRoute.delete(
     boardController.delete
 );
 
+boardRoute.get('/', boardController.list);
+
 export default boardRoute;

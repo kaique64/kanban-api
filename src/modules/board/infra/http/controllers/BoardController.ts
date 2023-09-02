@@ -31,6 +31,13 @@ class BoardController {
 
         return res.status(200).json({ success: board });
     }
+
+    public async list(_: Request, res: Response): Promise<Response> {
+        const boardService = container.resolve(BoardService)
+        const boards = await boardService.list();
+
+        return res.status(200).json(boards);
+    }
 }
 
 export default BoardController;
