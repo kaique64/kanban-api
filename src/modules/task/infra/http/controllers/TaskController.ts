@@ -25,6 +25,16 @@ class TaskController {
         return res.status(200).json(board);
     }
 
+    public async updateBoard(req: Request, res: Response): Promise<Response> {
+        const { id } = req.params;
+        const { boardId } = req.query;
+
+        const taskService = container.resolve(TaskService)
+        const board = await taskService.updateBoard(Number(id), Number(boardId));
+
+        return res.status(200).json(board);
+    }
+
     public async delete(req: Request, res: Response): Promise<Response> {
         const { id } = req.params;
 

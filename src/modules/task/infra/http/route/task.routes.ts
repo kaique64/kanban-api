@@ -19,6 +19,19 @@ taskRoute.post(
     taskController.create
 );
 
+taskRoute.patch(
+    '/:id',
+    celebrate({
+        [Segments.QUERY]: {
+            boardId: Joi.number().required(),
+        },
+        [Segments.PARAMS]: {
+            id: Joi.number().required(),
+        }
+    }),
+    taskController.updateBoard
+);
+
 taskRoute.put(
     '/:id',
     celebrate({
