@@ -13,14 +13,14 @@ class TaskImplementation implements ITaskRepository {
         this.ormRepository = databaseConnection.getRepository(Task);
     }
 
-    public async create(taskDTO: ITaskDTO): Promise<Task> {
+    public async create(taskDTO: ITaskDTO): Promise<ITaskResponseDTO> {
         const task = this.ormRepository.create(taskDTO);
         const results = await this.ormRepository.save(task);
 
         return results;
     }
 
-    public async update(taskDTO: ITaskUpdateDTO): Promise<Task | undefined> {
+    public async update(taskDTO: ITaskUpdateDTO): Promise<ITaskResponseDTO | undefined> {
         const task = await this.ormRepository.findOneBy({ id: taskDTO.id });
 
         if (task) {
@@ -31,7 +31,7 @@ class TaskImplementation implements ITaskRepository {
         }
     }
     
-    public async findById(id: number): Promise<Task | null> {
+    public async findById(id: number): Promise<ITaskResponseDTO | null> {
         const task = await this.ormRepository.findOneBy({ id });
         
         return task;

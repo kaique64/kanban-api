@@ -1,6 +1,6 @@
 export interface ITaskResponseDTO {
     id: number;
     name: string;
-    description: string;
+    description?: string;
     boardId: number;
 }

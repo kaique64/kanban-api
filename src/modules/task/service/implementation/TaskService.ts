@@ -1,9 +1,9 @@
 import { ITaskDTO } from "@modules/task/dtos/ITaskDTO";
 import { ITaskUpdateDTO } from "@modules/task/dtos/ITaskUpdateDTO";
-import Task from "@modules/task/infra/database/entity/Task";
 import { ITaskService } from "../interface/ITaskService";
 import { inject, injectable } from "tsyringe";
 import { ITaskRepository } from "@modules/task/infra/database/repository/ITaskRepository";
+import { ITaskResponseDTO } from "@modules/task/dtos/ITaskResponseDTO";
 import AppError from "@shared/infra/error/AppError";
 
 @injectable()
@@ -15,11 +15,11 @@ class TaskService implements ITaskService {
     ) {}
 
 
-    public async create(taskDto: ITaskDTO): Promise<Task> {
+    public async create(taskDto: ITaskDTO): Promise<ITaskResponseDTO> {
         return await this.taskRepository.create(taskDto);
     }
     
-    public async update(taskDto: ITaskUpdateDTO): Promise<Task | undefined> {
+    public async update(taskDto: ITaskUpdateDTO): Promise<ITaskResponseDTO | undefined> {
         const task = await this.taskRepository.findById(taskDto.id);
 
         if (!task) throw new AppError('Task not found!', 404);

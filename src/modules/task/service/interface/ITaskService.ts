@@ -1,12 +1,12 @@
 import { ITaskDTO } from "@modules/task/dtos/ITaskDTO";
+import { ITaskResponseDTO } from "@modules/task/dtos/ITaskResponseDTO";
 import { ITaskUpdateDTO } from "@modules/task/dtos/ITaskUpdateDTO";
-import Task from "@modules/task/infra/database/entity/Task";
 
 export interface ITaskService {
 
-    create(taskDto: ITaskDTO): Promise<Task>;
+    create(taskDto: ITaskDTO): Promise<ITaskResponseDTO>;
     
-    update(taskDto: ITaskUpdateDTO): Promise<Task | undefined>;
+    update(taskDto: ITaskUpdateDTO): Promise<ITaskResponseDTO | undefined>;
     
     delete(id: number): Promise<boolean>;
 
