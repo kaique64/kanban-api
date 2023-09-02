@@ -1,3 +1,5 @@
+import 'dotenv/config';
+import 'reflect-metadata';
 import { DataSource } from "typeorm"
 
 const filePath = 'src';
@@ -10,10 +12,10 @@ const databaseConnection = new DataSource({
     password: process.env.MYSQL_PASS,
     database: process.env.MYSQL_DATABASE,
     entities: [
-        `./${filePath}/modules/**/infra/database/entities/*.ts`,
+        `./${filePath}/modules/**/infra/database/entity/*.ts`,
     ],
     migrations: [
-        `./${filePath}/shared/infra/database/migrations/*.ts`,
+        `./${filePath}/shared/infra/database/migration/*.ts`,
     ],
     subscribers: [
         `${filePath}/subscriber/**/*.ts`,
@@ -29,3 +31,5 @@ databaseConnection.initialize()
 .catch((err) => {
     console.error("Error during Data Source initialization", err)
 })
+
+export default databaseConnection;
