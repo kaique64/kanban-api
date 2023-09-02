@@ -13,7 +13,7 @@ taskRoute.post(
         },
         [Segments.BODY]: {
             name: Joi.string().required(),
-            description: Joi.string(),
+            description: Joi.string().allow('', null),
         },
     }),
     taskController.create
@@ -30,7 +30,7 @@ taskRoute.put(
         },
         [Segments.BODY]: {
             name: Joi.string().required(),
-            description: Joi.string(),
+            description: Joi.string().allow('', null),
         },
     }),
     taskController.update
