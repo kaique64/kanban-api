@@ -8,6 +8,8 @@ export interface ITaskService {
     
     update(taskDto: ITaskUpdateDTO): Promise<ITaskResponseDTO | undefined>;
     
+    updateBoard(id: number, boardId: number): Promise<ITaskResponseDTO | undefined>;
+    
     delete(id: number): Promise<boolean>;
 
 }

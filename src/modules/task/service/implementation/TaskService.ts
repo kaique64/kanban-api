@@ -17,6 +17,18 @@ class TaskService implements ITaskService {
         private taskRepository: ITaskRepository,
     ) {}
 
+    public async updateBoard(id: number, boardId: number): Promise<ITaskResponseDTO | undefined> {
+        const board = await this.boardRepository.findById(boardId);
+
+        if (!board) throw new AppError('Board not found!', 404);
+        
+        const task = await this.taskRepository.findById(id);
+
+        if (!task) throw new AppError('Task not found!', 404);
+    
+        return await this.taskRepository.updateBoard(id, boardId);
+    }
+
 
     public async create(taskDto: ITaskDTO): Promise<ITaskResponseDTO> {
         const board = await this.boardRepository.findById(taskDto.boardId);
