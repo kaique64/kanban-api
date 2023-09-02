@@ -14,6 +14,10 @@ class BoardImplementation implements IBoardRepository {
     }
 
     public async create(boardDTO: IBoardDTO): Promise<IBoardResponseDTO> {
+        const board = this.ormRepository.create(boardDTO);
+        const results = await this.ormRepository.save(board);
+
+        return results;
     }
     
     public async update(boardDTO: IBoardUpdateDTO): Promise<IBoardResponseDTO> {
