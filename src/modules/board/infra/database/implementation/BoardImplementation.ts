@@ -33,6 +33,9 @@ class BoardImplementation implements IBoardRepository {
     }
 
     public async delete(id: number): Promise<boolean> {
+        const board = await this.ormRepository.delete(id)
+
+        return board.affected ? board.affected > 0 : false;
     }
 }
 
