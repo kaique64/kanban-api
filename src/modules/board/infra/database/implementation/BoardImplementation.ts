@@ -14,7 +14,9 @@ class BoardImplementation implements IBoardRepository {
     }
 
     public async list(): Promise<IBoardResponseDTO[]> {
-        const boards = await this.ormRepository.find();
+        const boards = await this.ormRepository.find({
+            relations: ['tasks']
+        });
     
         return boards;
     }
