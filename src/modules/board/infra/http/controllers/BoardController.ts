@@ -22,6 +22,15 @@ class BoardController {
 
         return res.status(200).json(board);
     }
+
+    public async delete(req: Request, res: Response): Promise<Response> {
+        const { id } = req.params;
+
+        const boardService = container.resolve(BoardService)
+        const board = await boardService.delete(Number(id));
+
+        return res.status(200).json({ success: board });
+    }
 }
 
 export default BoardController;

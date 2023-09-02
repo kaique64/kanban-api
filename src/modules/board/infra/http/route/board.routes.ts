@@ -28,4 +28,14 @@ boardRoute.put(
     boardController.update
 );
 
+boardRoute.delete(
+    '/:id',
+    celebrate({
+        [Segments.PARAMS]: {
+            id: Joi.number().required(),
+        },
+    }),
+    boardController.delete
+);
+
 export default boardRoute;
