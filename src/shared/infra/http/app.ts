@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import '../database'
 import express, { Request, Response, NextFunction } from 'express';
-import AppError from '../errors/AppError';
+import AppError from '../error/AppError';
 
 const app = express();
 
