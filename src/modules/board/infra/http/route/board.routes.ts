@@ -15,4 +15,17 @@ boardRoute.post(
     boardController.create
 );
 
+boardRoute.put(
+    '/:id',
+    celebrate({
+        [Segments.PARAMS]: {
+            id: Joi.number().required(),
+        },
+        [Segments.BODY]: {
+            name: Joi.string().required(),
+        },
+    }),
+    boardController.update
+);
+
 export default boardRoute;

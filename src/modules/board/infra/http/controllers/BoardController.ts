@@ -3,12 +3,12 @@ import { Request, Response } from "express";
 import BoardService from "@modules/board/service/implementation/BoardService";
 
 class BoardController {
-    private boardService = container.resolve(BoardService);
 
     public async create(req: Request, res: Response): Promise<Response> {
         const { name } = req.body;
 
-        const board = await this.boardService.create({ name });
+        const boardService = container.resolve(BoardService)
+        const board = await boardService.create({ name });
 
         return res.status(200).json(board);
     }
@@ -17,7 +17,8 @@ class BoardController {
         const { id } = req.params;
         const { name } = req.body;
 
-        const board = await this.boardService.update({ id: Number(id), name });
+        const boardService = container.resolve(BoardService)
+        const board = await boardService.update({ id: Number(id), name });
 
         return res.status(200).json(board);
     }
