@@ -1,5 +1,6 @@
 import 'dotenv/config';
-import '../database'
+import '../../container';
+import '../database';
 import express, { Request, Response, NextFunction } from 'express';
 import AppError from '../error/AppError';
 
