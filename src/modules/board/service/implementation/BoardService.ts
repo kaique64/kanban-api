@@ -18,7 +18,7 @@ class BoardService implements IBoardService {
     }
     
     public async update(boardDTO: IBoardUpdateDTO): Promise<IBoardResponseDTO | undefined> {
-        return await this.boardRepository.create(boardDTO);
+        return await this.boardRepository.update(boardDTO);
     }
 
     public async delete(id: number): Promise<boolean> {
