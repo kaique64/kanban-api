@@ -8,6 +8,8 @@ export interface IBoardRepository {
     
     update(boardDTO: IBoardUpdateDTO): Promise<IBoardResponseDTO | undefined>;
     
+    findById(id: number): Promise<IBoardResponseDTO | null>;
+
     delete(id: number): Promise<boolean>;
 
 }

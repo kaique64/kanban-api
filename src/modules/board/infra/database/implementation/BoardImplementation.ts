@@ -12,6 +12,12 @@ class BoardImplementation implements IBoardRepository {
     constructor() {
         this.ormRepository = databaseConnection.getRepository(Board);
     }
+    
+    public async findById(id: number): Promise<IBoardResponseDTO | null> {
+        const board = await this.ormRepository.findOneBy({ id });
+        
+        return board;
+    }
 
     public async create(boardDTO: IBoardDTO): Promise<IBoardResponseDTO> {
         const board = this.ormRepository.create(boardDTO);
@@ -24,7 +30,6 @@ class BoardImplementation implements IBoardRepository {
         const board = await this.ormRepository.findOneBy({ id: boardDTO.id });
 
         if (board) {
-
             this.ormRepository.merge(board, boardDTO);
             const results = await this.ormRepository.save(board);
             
