@@ -20,16 +20,27 @@ class TaskImplementation implements ITaskRepository {
         return results;
     }
 
-    public async update(taskDTO: ITaskUpdateDTO): Promise<ITaskResponseDTO | undefined> {
-        throw new Error("Method not implemented.");
+    public async update(taskDTO: ITaskUpdateDTO): Promise<Task | undefined> {
+        const task = await this.ormRepository.findOneBy({ id: taskDTO.id });
+
+        if (task) {
+            this.ormRepository.merge(task, taskDTO);
+            const results = await this.ormRepository.save(task);
+            
+            return results;
+        }
     }
     
-    public async findById(id: number): Promise<ITaskResponseDTO | null> {
-        throw new Error("Method not implemented.");
+    public async findById(id: number): Promise<Task | null> {
+        const task = await this.ormRepository.findOneBy({ id });
+        
+        return task;
     }
     
     public async delete(id: number): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        const task = await this.ormRepository.delete(id)
+
+        return task.affected ? task.affected > 0 : false;
     }
     
 }
