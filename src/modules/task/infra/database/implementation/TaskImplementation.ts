@@ -14,8 +14,8 @@ class TaskImplementation implements ITaskRepository {
     }
 
     public async create(taskDTO: ITaskDTO): Promise<Task> {
-        const board = this.ormRepository.create(taskDTO);
-        const results = await this.ormRepository.save(board);
+        const task = this.ormRepository.create(taskDTO);
+        const results = await this.ormRepository.save(task);
 
         return results;
     }

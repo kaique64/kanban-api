@@ -1,6 +1,6 @@
 import Board from "@modules/board/infra/database/entity/Board";
 import BaseEntity from "@shared/infra/database/entity/BaseEntity";
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 
 @Entity()
 class Task extends BaseEntity {
@@ -10,7 +10,11 @@ class Task extends BaseEntity {
     @Column({ nullable: true, type: 'longtext' })
     description?: string;
 
+    @Column()
+    boardId: number;
+    
     @ManyToOne(() => Board, (board) => board.tasks)
+    @JoinColumn({ name: 'boardId' })
     board: Board;
 }
 
