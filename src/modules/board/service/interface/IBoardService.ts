@@ -10,4 +10,6 @@ export interface IBoardService {
     
     delete(id: number): Promise<boolean>;
 
+    list(): Promise<IBoardResponseDTO[]>
+
 }

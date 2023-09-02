@@ -34,6 +34,10 @@ class BoardService implements IBoardService {
         return await this.boardRepository.delete(id);
     }
 
+    public async list(): Promise<IBoardResponseDTO[]> {
+        return await this.boardRepository.list();
+    }
+
 }
 
 export default BoardService
