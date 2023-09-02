@@ -13,6 +13,17 @@ class TaskImplementation implements ITaskRepository {
         this.ormRepository = databaseConnection.getRepository(Task);
     }
 
+    public async updateBoard(id: number, boardId: number): Promise<ITaskResponseDTO | undefined> {
+        const task = await this.ormRepository.findOneBy({ id });
+
+        if (task) {
+            this.ormRepository.merge(task, { boardId });
+            const results = await this.ormRepository.save(task);
+            
+            return results;
+        }
+    }
+
     public async create(taskDTO: ITaskDTO): Promise<ITaskResponseDTO> {
         const task = this.ormRepository.create(taskDTO);
         const results = await this.ormRepository.save(task);
