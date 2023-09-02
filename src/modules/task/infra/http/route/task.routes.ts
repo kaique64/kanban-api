@@ -2,10 +2,10 @@ import { Router } from "express";
 import { celebrate, Joi, Segments } from 'celebrate';
 import TaskController from "../controllers/TaskController";
 
-const boardRoute = Router();
+const taskRoute = Router();
 const taskController = new TaskController();
 
-boardRoute.post(
+taskRoute.post(
     '/',
     celebrate({
         [Segments.QUERY]: {
@@ -19,7 +19,7 @@ boardRoute.post(
     taskController.create
 );
 
-boardRoute.put(
+taskRoute.put(
     '/:id',
     celebrate({
         [Segments.QUERY]: {
@@ -36,7 +36,7 @@ boardRoute.put(
     taskController.update
 );
 
-boardRoute.delete(
+taskRoute.delete(
     '/:id',
     celebrate({
         [Segments.PARAMS]: {
@@ -46,4 +46,4 @@ boardRoute.delete(
     taskController.delete
 );
 
-export default boardRoute;
+export default taskRoute;
