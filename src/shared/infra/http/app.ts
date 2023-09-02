@@ -1,7 +1,8 @@
 import 'reflect-metadata';
 import 'dotenv/config';
-import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import express, { Request, Response, NextFunction } from 'express';
+import { errors } from 'celebrate';
 
 import '../../container';
 import '../database';
@@ -29,5 +30,6 @@ app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
 app.use(cors());
 app.use(express.json());
 app.use('/api', router);
+app.use(errors());
 
 export default app;
