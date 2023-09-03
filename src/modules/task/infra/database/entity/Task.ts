@@ -13,7 +13,7 @@ class Task extends BaseEntity {
     @Column()
     boardId: number;
     
-    @ManyToOne(() => Board, (board) => board.tasks)
+    @ManyToOne(() => Board, (board) => board.tasks, { cascade: true, onDelete: 'CASCADE' })
     @JoinColumn({ name: 'boardId' })
     board: Board;
 }
