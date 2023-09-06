@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'kanboard-dev'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_77199DA316194F4BA7192E22F3EF2580 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8AF79BB7A40D4FD9A76CF1923005AFB7 }}
           package: .
